@@ -4,6 +4,9 @@ DROP DATABASE IF EXISTS employeetrack_db;
 -- CREATE DATABASE
 CREATE DATABASE employeetrack_db;
 
+-- USE DATABASE
+USE employeetrack_db;
+
 -- Create Department table
 CREATE TABLE Departments (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,31 +1,43 @@
-const Department = require('../models/Department');
+const inquirer = require('inquirer');
+const { getAllDepartments, createDepartment } = require('../models/Department');
 
-function createDepartment(req, res) {
-    const { name } = req.body;
-
-    Department.create({ name })
-        .then((department) => {
-            res.status(201).json(department);
+function viewAllDepartments(callback) {
+    getAllDepartments()
+        .then((departments) => {
+            console.log('All Departments:');
+            console.table(departments);
+            callback();
         })
-        .catch((error) => {
-            console.error('Error creating department:', error);
-            res.status(500).json({ error: 'Unable to create department' });
+        .catch ((error) => {
+            console.error('Error retrieving departments:', error);
+            callback();
         });
 }
 
-function getAllDepartments(req, res) {
-    
-    Department.findAll()
-        .then((departments) => {
-            res.status(200).json(departments);
-        })
-        .catch((error) => {
-            console.error('Error retrieving departments:', error);
-            res.status(500).json({ error: 'Unable to retrive departments' });
+function addDepartment(callback) {
+    inquirer
+        .createPromptModule([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Enter the name of the department:',
+            },
+        ])
+        .then((answers) => {
+            const name = answers.name;
+            createDepartment(name)
+                .then(() => {
+                    console.log('Department added successfully!');
+                    callback();
+                })
+                .catch((error) => {
+                    console.error('Error adding department:', error);
+                    callback();
+                });
         });
 }
 
 module.exports = {
-    createDepartment,
-    getAllDepartments,
+    viewAllDepartments,
+    addDepartment,
 };

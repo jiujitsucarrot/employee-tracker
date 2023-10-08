@@ -1,30 +1,53 @@
-const Role = require('../models/Role');
+const inquirer = require('inquirer');
+const { getAllRoles, createRole } = require('../models/Role');
 
-function createRole(req, res) {
-    const { title, salary, department_id } = req.body;
-
-    Role.create({ title, salary, department_id })
-        .then((role) => {
-            res.status(201).json(role);
-        })
-        .catch((error) => {
-            console.error('Error creating role:', error);
-            res.status(500).json({ error: 'Unable to create role' });
-        });
-}
-
-function getAllRoles(req, res) {
-    Role.findAll()
+function viewAllRoles(callback) {
+    getAllRoles()
         .then((roles) => {
-            res.status(200).json(roles);
+            console.log('All Roles:');
+            console.table(roles);
+            callback();
         })
         .catch((error) => {
             console.error('Error retrieving roles:', error);
-            res.status(500).json({ error: 'Unable to retrieve roles' });
+            callback();
+        });
+}
+
+function addRole(callback) {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'title',
+                message: 'Enter the title of the role:',
+            },
+            {
+                type: 'number',
+                name: 'salary',
+                message: 'Enter the salary for the role:',
+            },
+            {
+                type: 'number',
+                name: 'department_id',
+                message: 'Enter the department ID for the role:',
+            },
+        ])
+        .then((answers) => {
+            const { title, salary, department_id } = answers;
+            createRole(title, salary, department_id)
+                .then(() => {
+                    console.log('Role added successfully!');
+                    callback();
+                })
+                .catch((error) => {
+                    console.error('Error adding role:', error);
+                    callback();
+                });
         });
 }
 
 module.exports = {
-    createRole,
-    getAllRoles,
+    viewAllRoles,
+    addRole,
 };
