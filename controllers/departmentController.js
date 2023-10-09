@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const { getAllDepartments, createDepartment } = require('../models/Department');
 
+const db = require('../config/connection');
+
 function viewAllDepartments(callback) {
     getAllDepartments()
         .then((departments) => {
@@ -16,7 +18,7 @@ function viewAllDepartments(callback) {
 
 function addDepartment(callback) {
     inquirer
-        .createPromptModule([
+        .prompt([
             {
                 type: 'input',
                 name: 'name',

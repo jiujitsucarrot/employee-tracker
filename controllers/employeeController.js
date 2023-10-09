@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
-const { getAllEmployees, createEmployee, updateEmployeeRole } = require('../models/Employee');
+const { getAllEmployees, createEmployee } = require('../models/Employee');
+
+const db = require('../config/connection');
 
 function viewAllEmployees(callback) {
     getAllEmployees()
@@ -51,36 +53,7 @@ function addEmployee(callback) {
         });
 }
 
-function updateEmployeeRole(callback) {
-    inquirer
-        .prompt([
-            {
-                type: 'number',
-                name: 'employee_id',
-                message: 'Enter the ID of the employee whose role you want to update:',
-            },
-            {
-                type: 'number',
-                name: 'new_role_id',
-                message: 'Enter the new role ID for the employee:',
-            },
-        ])
-        .then((answers) => {
-            const { employee_id, new_role_id } = answers;
-            updateEmployeeRole(employee_id, new_role_id)
-                .then(() => {
-                    console.log('Employee role updated successfully!');
-                    callback();
-                })
-                .catch((error) => {
-                    console.error('Error updating employee role:', error);
-                    callback();
-                });
-        });
-}
-
 module.exports = {
     viewAllEmployees,
     addEmployee,
-    updateEmployeeRole,
 };

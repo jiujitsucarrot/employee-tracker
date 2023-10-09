@@ -1,4 +1,4 @@
-const db = require('../connection');
+const db = require('../config/connection');
 
 function createEmployee(first_name, last_name, role_id, manager_id) {
     return new Promise((resolve, reject) => {

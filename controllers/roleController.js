@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const { getAllRoles, createRole } = require('../models/Role');
 
+const db = require('../config/connection');
+
 function viewAllRoles(callback) {
     getAllRoles()
         .then((roles) => {
