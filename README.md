@@ -1,4 +1,4 @@
-# The WU Employee Tracker
+# The WU-Tang Employee Tracker
 
 ## Your Task
 

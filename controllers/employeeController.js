@@ -66,7 +66,7 @@ function addEmployee(callback) {
 
 function updateEmployeeRole(callback) {
     let employee_id;
-    
+
     getAllEmployees()
         .then((employees) => {
             inquirer
