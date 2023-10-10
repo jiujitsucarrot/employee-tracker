@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const inquirer = require('inquirer');
 const departmentController = require('./controllers/departmentController');
 const roleController = require('./controllers/roleController');
