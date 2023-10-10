@@ -1,15 +1,15 @@
 -- Insert departments
 INSERT INTO Departments (name) VALUES
-    ('HR'),
-    ('Engineering'),
-    ('Sales'),
+    ('Management'),
+    ('Engineers'),
+    ('Lyricists'),
     ('Marketing');
 
 -- Insert roles
 INSERT INTO Roles (title, salary, department_id) VALUES
-    ('HR Manager', 80000, 1),
-    ('Software Engineer', 100000, 2),
-    ('Sales Associate', 70000, 3),
+    ('Agent/Manager', 100000, 1),
+    ('Sound Engineer', 250000, 2),
+    ('Creative Artists', 1000000, 3),
     ('Marketing Specialist', 75000, 4);
 
 -- Insert Employees

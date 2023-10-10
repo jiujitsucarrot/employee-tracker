@@ -1,4 +1,4 @@
-# Employee Tracker
+# The WU Employee Tracker
 
 ## Your Task
 
@@ -40,10 +40,12 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Sources
 
-* 
-* 
+Sources that were utilized to complete this challenge were as following. Revisiting course lectures, YouTube videos, Google, notes from the week's lecture, tutoring session, office hours, as well as reaching out to fellow junior and senior developers. Course instructor assisstance, TA's, classmates/colleagues, and friends for ideas beyond my own. This challenge was difficult in many ways, and required a lot of patience. This challenge kept me up late going down the rabbit hole attempting to solve the problems that arose.
 
 ## Submission Links
+
+* 
+* https://github.com/jiujitsucarrot/employee-tracker
 
 ## Bonus
 
