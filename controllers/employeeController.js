@@ -35,9 +35,13 @@ function addEmployee(callback) {
                 message: 'Enter the role ID for the employee:',
             },
             {
-                type: 'number',
+                type: 'list',
                 name: 'manager_id',
-                message: 'Enter the manager ID for the employee (or leave blank):',
+                message: 'Select the manager for the employee:',
+                choices: employees.map((employee) => ({
+                    name: `${employee.first_name} ${employee.last_name}`,
+                    value: employee.id,
+                })),
             },
         ])
         .then((answers) => {
@@ -53,7 +57,42 @@ function addEmployee(callback) {
         });
 }
 
+function updateEmployeeRole(callback) {
+    getAllEmployees().then((employees) => {
+        inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'employee_id',
+                    message: 'Select the employee to update:',
+                    choices: employees.map((employee) => ({
+                        name: `${employee.first_name} ${employee.last_name}`,
+                        value: employee_id,
+                    })),
+                },
+                {
+                    type: 'number',
+                    name: 'new_role_id',
+                    message: 'Enter the new role ID for the employee:',
+                },
+            ])
+            .then((answers) => {
+                const { employee_id, new_role_id } = answers;
+                updateEmployeeRole(employee_id, new_role_id)
+                    .then(() => {
+                        console.log('Employee role updated successfully!');
+                        callback();
+                    })
+                    .catch((error) => {
+                        console.error('Error updating employee role:', error);
+                        callback();
+                    });
+            });
+    });
+}
+
 module.exports = {
     viewAllEmployees,
     addEmployee,
+    updateEmployeeRole,
 };
