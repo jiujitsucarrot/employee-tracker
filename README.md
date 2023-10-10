@@ -44,7 +44,7 @@ Sources that were utilized to complete this challenge were as following. Revisit
 
 ## Submission Links
 
-* 
+* https://youtu.be/sZHeMVsJq58
 * https://github.com/jiujitsucarrot/employee-tracker
 
 ## Bonus
